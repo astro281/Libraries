@@ -756,16 +756,17 @@
 
                 if bool then
                     library["items"].Enabled = true
-                    items["main"].GroupTransparency = 1
-                    library:tween(items["main"], {Size = cfg.size, GroupTransparency = 0}, Enum.EasingStyle.Quint, 0.35)
+                    items["main"].Size = dim2(0, cfg.size.X.Offset, 0, 0)
+                    library:tween(items["main"], {Size = cfg.size}, Enum.EasingStyle.Quint, 0.35)
                     task.delay(0.35, function()
                         mobile_button.Visible = false
                         menu_tweening = false
                     end)
                 else
-                    library:tween(items["main"], {GroupTransparency = 1}, Enum.EasingStyle.Quint, 0.3)
+                    library:tween(items["main"], {Size = dim2(0, cfg.size.X.Offset, 0, 0)}, Enum.EasingStyle.Quint, 0.3)
                     task.delay(0.3, function()
                         library["items"].Enabled = false
+                        items["main"].Size = cfg.size
                         mobile_button.Visible = true
                         menu_tweening = false
                     end)
