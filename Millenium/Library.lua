@@ -750,27 +750,9 @@
             end)
 
             function cfg.toggle_menu(bool)
-                if menu_tweening then return end
-                menu_tweening = true
                 menu_visible = bool
-
-                if bool then
-                    library["items"].Enabled = true
-                    items["main"].Size = dim2(0, cfg.size.X.Offset, 0, 0)
-                    library:tween(items["main"], {Size = cfg.size}, Enum.EasingStyle.Quint, 0.35)
-                    task.delay(0.35, function()
-                        mobile_button.Visible = false
-                        menu_tweening = false
-                    end)
-                else
-                    library:tween(items["main"], {Size = dim2(0, cfg.size.X.Offset, 0, 0)}, Enum.EasingStyle.Quint, 0.3)
-                    task.delay(0.3, function()
-                        library["items"].Enabled = false
-                        items["main"].Size = cfg.size
-                        mobile_button.Visible = true
-                        menu_tweening = false
-                    end)
-                end
+                library["items"].Enabled = bool
+                mobile_button.Visible = not bool
             end
                 
             return setmetatable(cfg, library)
